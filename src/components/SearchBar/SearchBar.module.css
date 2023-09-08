@@ -1,0 +1,38 @@
+.navButton{
+    background:#dddf66;
+    padding: 10px;
+    border:none;
+    border-radius: 10px;
+    height: 40px;
+    width: 100px;
+    font-size: 18px;
+    align-items: center;
+    justify-content: center;
+    
+    }
+
+input{
+    font-size: 1.1em;
+    background-color: #ddd;
+    border: 3px solid #9fc;
+    border-radius: 5px;
+    padding: 8px;
+    width: 400px;
+    box-shadow: 0 0 20px #4f9;
+    }
+
+
+.divSearch{
+    display:flex;
+    margin : 0 100px 0 0;
+    
+}
+
+.random{
+    position: absolute;
+    left:70%;
+}
+
+.random:hover{
+    transform: scale(1.1);
+}

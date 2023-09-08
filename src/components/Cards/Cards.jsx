@@ -18,6 +18,8 @@ export default function Cards(props) {
       <DivCards>
          {props.characters.map(character => {
          return <Card 
+         key={character.id}
+         character={character}
          id={character.id} 
          name ={character.name}
          status={character.status}
@@ -27,7 +29,6 @@ export default function Cards(props) {
          image={character.image}
          onClose={props.onClose}
          onSelect={() => window.alert('Emulamos que se selecciona la card')}
-         random={props.random}
          />  
       })}
    </DivCards>);

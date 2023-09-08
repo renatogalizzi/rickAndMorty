@@ -1,9 +1,5 @@
 import React from "react";
-import styled from "styled-components";
-
-const Input = styled.input`
-border: 5px solid green;
-`
+import style from "./SearchBar.module.css"
 
 export default function SearchBar(props) {
 
@@ -14,10 +10,10 @@ export default function SearchBar(props) {
    }
 
    return (
-      <div>
-         <button onClick={()=>props.random(id)}>Random</button>
-         <Input type='search' onChange={handleChange}  placeholder="id..." />
-         <button onClick={()=>(props.onSearch(id))}>Agregar</button>
+      <div class={style.divSearch}>
+         <div class={style.random}><button class={style.navButton} onClick={()=>props.random(id)}>Random</button></div>
+         <input type='search' onChange={handleChange}  placeholder="id..." />
+         <button class={style.navButton} onClick={()=>(props.onSearch(id))}>Agregar</button>
       </div>
    );
 }

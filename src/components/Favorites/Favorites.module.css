@@ -1,0 +1,21 @@
+.divCards {
+    display: flex;
+    flex-wrap:wrap;
+    flex-direction:row;
+    justify-items: center;
+    margin: 50px auto;
+    gap:15px;
+    justify-content:center;
+}
+
+.divSelect{
+width: 15%;
+background:gray;
+padding:10px;
+border-radius:15px;
+/* display:block;
+flex-wrap:wrap; */
+opacity:90%;
+left:45%;
+top:15%;
+}

@@ -1,20 +1,14 @@
 import React from "react"; 
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { addFav, removeFav} from "../../redux/actions";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import style from "./Card.module.css";
 
-const DivCard = styled.div`
-border: 3px solid orange;
-max-width:170px;
-list-style: none;
-width:100%;
-backdrop-filter:blur(10px);
-display:flex;
-flex-direction:column;
-//background:grey;
-border-radius:10px;
-height: 50% ;
-width: 40%;
-font-size:small
-`
+
 
 const ImgCard = styled.img`
 border-radius:10px;
@@ -27,29 +21,69 @@ width: 80%;
 position:relative;
 `
 
-const ButtonStyle = styled.button`
-display:inline-block;
-//position:relative;
-left:0px;
-top=0px;
-width:30px;
-height:30px;`
+export function Card(props) {
+   const location = useLocation();
+   const myFavorites = useSelector((state)=>state.myFavorites);
+   const dispatch = useDispatch();
+   
+   const [isFav,setIsFav] = useState(false);
 
-const H2 = styled.h2`
-color:white;
-font-size:medium
-margin:0px;`
 
-export default function Card(props) {
-   return (
+   useEffect(() => {
+      myFavorites.forEach((fav) => {
+         if (fav.id === props.id) {
+            setIsFav(true);
+         }
+      });
+   },[myFavorites]);
+   
+   
+   
+  const handleFavorite = () => {
+      if (isFav) {
+         dispatch(removeFav(props.id));
+         setIsFav(false);
+         }  
+      if (!isFav)  {
+         dispatch(addFav(props.character));
+         setIsFav(true);
+         }
       
-         <DivCard key={props.id}>
-            <ButtonStyle onClick={()=>{props.onClose(props.id)}}>X</ButtonStyle>
+   }
+   return (
+         <div class={style.divCard} key={props.id}>
+            {
+            isFav ? (
+                     <button class={style.cardButton} onClick={handleFavorite}>❤️</button>
+                ) : (
+                     <button class={style.cardButton} onClick={handleFavorite}>🤍</button>
+                  )
+            }
+            {location.pathname === "/favorites" ? <button class={style.closeBtn} onClick={()=>{dispatch(removeFav(props.id))}}>X</button> : <button class={style.closeBtn} onClick={()=>{props.onClose(props.id)}}>X</button>}
+            {/* <ButtonStyle onClick={()=>{props.onClose(props.id)}}>X</ButtonStyle> */}
             <ImgCard src={props.image} onClick={props.onSelect} alt="Character image" />
-            <H2>{props.name}</H2>
-            <H2>{props.species}</H2>
-            <H2>{props.gender}</H2>
-         </DivCard>
+            <Link to={`/detail/${props.id}`}><h2>{props.name}</h2></Link>
+            <h2>{props.species}</h2>
+            <h2>{props.gender}</h2>
+         </div>
       
    );
 }
+
+// export const mapDispatchToProps = (dispatch) => {
+// return{
+//    addFav:(character)=>{dispatch(addFav(character))},
+//    removeFav:(id)=>{dispatch(removeFav(id))}
+// }
+// }
+
+// export function mapStateToProps(state) {
+//    return {
+//       myFavorites:state.myFavorites,
+//    }
+// }
+
+
+
+// export default connect(mapStateToProps,null)(Card);
+export default Card;

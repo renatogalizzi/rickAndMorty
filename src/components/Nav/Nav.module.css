@@ -1,0 +1,17 @@
+.navButton{
+    background:#dddf66;
+    padding: 10px;
+    border:none;
+    border-radius: 10px;
+    height: 40px;
+    width: 100px;
+    font-size: 18px;
+    align-items: center;
+    justify-content: center;
+
+    }
+
+.divButtons{
+    display:flex;
+    
+}
