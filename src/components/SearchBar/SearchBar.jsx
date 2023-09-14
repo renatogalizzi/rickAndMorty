@@ -10,10 +10,10 @@ export default function SearchBar(props) {
    }
 
    return (
-      <div class={style.divSearch}>
-         <div class={style.random}><button class={style.navButton} onClick={()=>props.random(id)}>Random</button></div>
+      <div className={style.divSearch}>
+         <div className={style.random}><button className={style.navButton} onClick={()=>props.random(id)}>Random</button></div>
          <input type='search' onChange={handleChange}  placeholder="id..." />
-         <button class={style.navButton} onClick={()=>(props.onSearch(id))}>Agregar</button>
+         <button className={style.navButton} onClick={()=>(props.onSearch(id))}>Agregar</button>
       </div>
    );
 }

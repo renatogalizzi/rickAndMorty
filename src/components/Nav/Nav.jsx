@@ -37,15 +37,15 @@ export default function Nav (props) {
   // }
    return (
     <DivNav>
-      <div class={style.divButtons}>
+      <div className={style.divButtons}>
         <Link to={`/about`}>
-      <button class={style.navButton}>About</button>
+      <button className={style.navButton}>About</button>
       </Link>
       <Link to={`/home`}>
-      <button class={style.navButton}>Home</button>
+      <button className={style.navButton}>Home</button>
       </Link>
       <Link to={"/favorites"}>
-      <button class={style.navButton}>Favorites</button>
+      <button className={style.navButton}>Favorites</button>
       </Link>
       </div>
       <DivBar>

@@ -35,32 +35,39 @@ export function Card(props) {
             setIsFav(true);
          }
       });
-   },[myFavorites]);
+   },[myFavorites,props.id]);
    
    
    
-  const handleFavorite = () => {
-      if (isFav) {
-         dispatch(removeFav(props.id));
-         setIsFav(false);
-         }  
-      if (!isFav)  {
-         dispatch(addFav(props.character));
-         setIsFav(true);
-         }
+//   const handleFavorite = () => {
+//       if (isFav) {
+//          dispatch(removeFav(props.id));
+//          setIsFav(false);
+//          }  
+//       if (!isFav)  {
+//          dispatch(addFav(props.character));
+//          setIsFav(true);
+//          }
+      //}
+
+const handleFavorite = () => {
+   isFav ? dispatch(removeFav(props.id)) : dispatch(addFav(props));
+   setIsFav(!isFav);
+ }
       
-   }
+   
    return (
-         <div class={style.divCard} key={props.id}>
+         <div className={style.divCard}>
             {
             isFav ? (
-                     <button class={style.cardButton} onClick={handleFavorite}>❤️</button>
+                     <button className={style.cardButton} onClick={handleFavorite}>❤️</button>
                 ) : (
-                     <button class={style.cardButton} onClick={handleFavorite}>🤍</button>
+                     <button className={style.cardButton} onClick={handleFavorite}>🤍</button>
                   )
             }
-            {location.pathname === "/favorites" ? <button class={style.closeBtn} onClick={()=>{dispatch(removeFav(props.id))}}>X</button> : <button class={style.closeBtn} onClick={()=>{props.onClose(props.id)}}>X</button>}
-            {/* <ButtonStyle onClick={()=>{props.onClose(props.id)}}>X</ButtonStyle> */}
+            {/* {location.pathname === "/favorites" ? <button class={style.closeBtn} onClick={()=>(dispatch(removeFav(props.id)))}>X</button> : <button class={style.closeBtn} onClick={()=>{props.onClose(props.id)}}>X</button>} */}
+            {location.pathname !== "/favorites" && <button className={style.closeBtn} onClick={()=>{props.onClose(props.id)}}>X</button>} 
+            {/* <button onClick={()=>{props.onClose(props.id)}}>X</button> */}
             <ImgCard src={props.image} onClick={props.onSelect} alt="Character image" />
             <Link to={`/detail/${props.id}`}><h2>{props.name}</h2></Link>
             <h2>{props.species}</h2>

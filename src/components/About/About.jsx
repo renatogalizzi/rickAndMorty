@@ -1,16 +1,12 @@
 import React from "react"; 
-import styled from "styled-components";
-
-const DivAbout = styled.div`
-background :red;
-color:white;
-width:100%;
-height=100%;
-padding:100px`
+import style from "./About.module.css";
+import image from "../../images/about.png";
 
 
 export default function About() {
     return (
-        <DivAbout>MUESTRA QUE FUNCIONA</DivAbout>
+        <div class={style.conteinerAbout}>
+            <img src="https://aldescubierto.org/wp-content/uploads/2021/07/Portada_RickyMorty_web.jpg" class={style.imgAbout}></img>
+        </div>
     );
  }

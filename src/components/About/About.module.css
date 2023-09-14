@@ -1,0 +1,29 @@
+.conteinerAbout{
+background :none;
+color:white;
+width:600px;
+height:300px;
+padding:100px;
+position:absolute;
+top:15%;
+left:30%;
+backdrop-filter:blur(3px);
+border-radius: 20px;
+}
+
+.imgAbout{
+height: 300px;
+width: 500px;
+transition:all .5s ease-in-out;
+
+}
+/* .imgAbout:hover {-webkit-transform: rotate(360deg);transform: rotate(360deg);} */
+
+.imgAbout:hover{
+    border-radius:50%;
+    -webkit-border-radius:50%;
+    box-shadow: 0px 0px 15px 15px #a4f363;
+    -webkit-box-shadow: 0px 0px 15px 15px #78f746;
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    }

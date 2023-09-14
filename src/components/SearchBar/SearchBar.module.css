@@ -8,17 +8,17 @@
     font-size: 18px;
     align-items: center;
     justify-content: center;
-    
+    cursor:pointer;
     }
 
 input{
     font-size: 1.1em;
     background-color: #ddd;
-    border: 3px solid #9fc;
+    border: 3px solid rgb(150, 142, 34);
     border-radius: 5px;
     padding: 8px;
     width: 400px;
-    box-shadow: 0 0 20px #4f9;
+    box-shadow: 0 0 20px rgb(104, 245, 104);
     }
 
 
@@ -35,4 +35,10 @@ input{
 
 .random:hover{
     transform: scale(1.1);
+    color:rgb(121, 19, 16);
+}
+
+.navButton:hover{
+    transform: scale(1.1);   
+    color:rgb(121, 19, 16);
 }

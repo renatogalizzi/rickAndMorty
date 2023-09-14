@@ -8,10 +8,14 @@
     font-size: 18px;
     align-items: center;
     justify-content: center;
-
+    gap:20px;
+    cursor:pointer;
     }
 
 .divButtons{
     display:flex;
     
+}.navButton:hover{
+    transform: scale(1.1);   
+    color:rgb(121, 19, 16);
 }

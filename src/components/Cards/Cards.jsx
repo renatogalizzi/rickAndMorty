@@ -8,7 +8,7 @@ const DivCards = styled.div`
     flex-direction:row;
     justify-items: center;
     margin: 50px auto;
-    gap:15px;
+    gap:25px;
     justify-content:center;
    //  height: 100%;
    //  width: 100%;

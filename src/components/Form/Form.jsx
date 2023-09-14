@@ -23,21 +23,21 @@ const handleChange = (event) => {
 }
 
     return (
-        <div class={style.fondoForm}>
-            <div class={style.formulario}>
+        <div className={style.fondoForm}>
+            <div className={style.formulario}>
                 <h2>Inicio de Sesion</h2>
         <form onSubmit={handleSubmit}>
-            <div class={style.username}>
+            <div className={style.username}>
                 <input name="email" value={userData.email} type="text" onChange={handleChange} ></input>
                 <label>Nombre de Usuario</label>
                 <span>{errors.email}</span>
             </div>
-            <div class={style.username}>
+            <div className={style.username}>
                 <input name="password" value={userData.password} type="text" onChange={handleChange} ></input>
                 <label>Contraseña</label>
                 <span>{errors.password}</span>
             </div>
-            <button class={style.buttonForm}>Ingresar</button>
+            <button className={style.buttonForm}>Ingresar</button>
         </form>
         </div>
         </div>

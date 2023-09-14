@@ -23,17 +23,18 @@ export function Favorites () {
     const dispatch=useDispatch();
 
     const handleOrder = (e)=>{
-        dispatch(orderCards(e.target.value))
+        dispatch(orderCards(e.target.value));
         setAux(!aux);
     }
 
     const handleFilter= (e)=>{
         dispatch(filterCards(e.target.value))
     }
-
+    
+    
     return (
         <div>
-    <div class={style.divSelect}>
+    <div className={style.divSelect}>
         <select onChange={handleOrder}>
             <option value="A">Ascendente</option>
             <option value="D">Descendente</option>
@@ -47,7 +48,7 @@ export function Favorites () {
             <option value="All">Todos</option>
       </select>
       </div>
-    <div class={style.divCards}>
+    <div className={style.divCards}>
 
         {myFavorites.map((character)=>{ 
         return <Card 
