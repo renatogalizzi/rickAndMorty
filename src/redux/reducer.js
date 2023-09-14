@@ -16,7 +16,10 @@ const reducerFav = (state=initialState,action) => {
         case REMOVE_FAV:
             let filterArr = state.myFavorites.filter((personaje)=> (personaje.id !== Number(action.payload)));
             console.log(filterArr);
-            return {...state,myFavorites:filterArr};
+            return {...state,
+                myFavorites:filterArr,
+                allCharacters:filterArr,
+            };
         case FILTER:
             if (action.payload === "All") return {...state,myFavorites:state.allCharacters};
             let filterAllChar = state.allCharacters.filter((char) => char.gender === action.payload);
