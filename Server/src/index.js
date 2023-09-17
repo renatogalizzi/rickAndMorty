@@ -1,6 +1,6 @@
-let dataS = require("./utils/data");
 var fs = require("fs");
 var http = require("http");
+const getCharById = require("./controllers/getCharById");
 
 const PORT = 3001;
 
@@ -8,34 +8,27 @@ module.exports = http.createServer((req,res)=>{
     const {url} = req;
     res.setHeader('Access-Control-Allow-Origin', '*');
     console.log(`Server raised in port ${PORT}`);
-    if ( url.includes("/rickandmorty/character")){
-        let barrini = url.lastIndexOf("/") + 1;
-        let getId="";
-        for (let i=barrini;i<url.length;i++){
-            getId= getId + url[i];
-        }
-        // fs.readFile("./utils/data","utf-8",(err,data)=>{
-        //     if(err){
-        //         res.writeHead(404,{"Content-Type":"text/plain"});
-        //         res.end("Character not found")
-        //     } else {
-        //     //let char = data.filter(char=> char.id === Number(getId))
-        //         //JSON.stringify(char);
-        //         res.writeHead(200,{"Content-Type":"application/json"});
-        //         res.end(JSON.stringify(data));
-        //     }
+    //     let getId="";
+    // if ( url.includes("/rickandmorty/character")){
+    //     let barrini = url.lastIndexOf("/") + 1;
+    //     let getId="";
+    //     for (let i=barrini;i<url.length;i++){
+    //         getId= getId + url[i];
+    //     }
+    //     if (getId < 6){
+    //     let character = dataS.filter(char => char.id === Number(getId))
+    //     console.log(character[0])
+    //     res.end(JSON.stringify(character))
+    //     return;
+    //     } 
 
-        // })
-        if (getId < 6){
-        let character = dataS.filter(char => char.id === Number(getId))
-        console.log(character[0])
-        res.end(JSON.stringify(character))
-        return;
-        } 
+    //     res.writeHead(404,{"Content-Type":"text/plain"})
+    //     res.end("No Existe personaje con ese ID")
 
-        res.writeHead(404,{"Content-Type":"text/plain"})
-        res.end("No Existe personaje con ese ID")
-
+    // }
+    let charID = url.split("/").pop();
+    if (url.includes("/rickandmorty/character")){
+        getCharById(res,charID)
     }
 
 }).listen(PORT,"localhost");;

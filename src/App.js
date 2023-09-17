@@ -48,9 +48,9 @@ function App() {
 
    const validateId = (id) =>{
       let resp="";
-      if(id > 5) {
+      if(id > 826) {
          resp=false;
-         return resp;
+      
       }else {
       for (let i=0;i<characters.length;i++){
          if (characters[i].id === parseInt(id)) resp=true;
@@ -79,20 +79,22 @@ function App() {
    //CON SERVER LOCAL
 
    function onSearch(id) {
-       axios(`http://localhost:3001/rickandmorty/character/${id}`).then(({ data }) => {
-         if (data[0].name){
+       axios(`http://localhost:3001/rickandmorty/character/${id}`)
+       .then(({ data }) => {
+         console.log(data)
+         if (data.name){
             if(validateId(id)){
-               return window.alert("El Personaje seleccionado ya Existe xD");
+               window.alert("El Personaje seleccionado ya Existe xD");
             } else
-            return setCharacters((oldChars) => [...oldChars, data[0]]); 
-            // uso data[0] porque llega una array de 1 elemento.
-            //lo puedo filtar sino en el server, con character[0]
-         } else {
-            return window.alert('¡No hay personajes con este ID!');
+            return setCharacters((oldChars) => [...oldChars, data]); 
+         // } else {
+         //    return window.alert('¡No hay personajes con este ID!');
          }
-      }).catch((error) => {
-         console.log(error);
-         window.alert(error.request.status +" "+ error.request.response);});;
+      })
+      .catch((error) => {
+         console.log(error)
+         // window.alert(error.request.status +" "+ error.request.response);});;
+         window.alert(error.request.status + " No existe ese ID");});;
    }
 //https://axios-http.com/es/docs/handling_errors
 

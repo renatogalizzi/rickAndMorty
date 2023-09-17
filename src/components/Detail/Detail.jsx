@@ -14,9 +14,11 @@ export default function Detail () {
 
     const [character , setCharacter] = useState({});
     useEffect(() => {
-        axios(`http://localhost:3001/rickandmorty/character/${id}`).then(({ data }) => {
-           if (data[0].name) {
-              setCharacter(data[0]);
+        axios.get(`http://localhost:3001/rickandmorty/character/${id}`)
+        .then(({ data }) => {
+           if (data.name) {
+            console.log(data);
+              setCharacter(data);
            } else {
               window.alert('No hay personajes con ese ID');
            }
@@ -26,7 +28,6 @@ export default function Detail () {
 
     return(
         <DivDetail>
-            {console.log(character.origin)}
             <h1>{character.name}</h1>
             <h2>STATUS | {character.status}</h2>
             <h2>SPECIE | {character.species}</h2>
