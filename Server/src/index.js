@@ -1,34 +1,46 @@
-var fs = require("fs");
-var http = require("http");
-const getCharById = require("./controllers/getCharById");
+const express = require("express");
+const routerRyM = require("./routes/index");
 
+const server = express();
 const PORT = 3001;
 
-module.exports = http.createServer((req,res)=>{
-    const {url} = req;
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    console.log(`Server raised in port ${PORT}`);
-    //     let getId="";
-    // if ( url.includes("/rickandmorty/character")){
-    //     let barrini = url.lastIndexOf("/") + 1;
-    //     let getId="";
-    //     for (let i=barrini;i<url.length;i++){
-    //         getId= getId + url[i];
-    //     }
-    //     if (getId < 6){
-    //     let character = dataS.filter(char => char.id === Number(getId))
-    //     console.log(character[0])
-    //     res.end(JSON.stringify(character))
-    //     return;
-    //     } 
+server.use(express.json());
 
-    //     res.writeHead(404,{"Content-Type":"text/plain"})
-    //     res.end("No Existe personaje con ese ID")
+server.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+  next();
+});
 
-    // }
-    let charID = url.split("/").pop();
-    if (url.includes("/rickandmorty/character")){
-        getCharById(res,charID)
-    }
 
-}).listen(PORT,"localhost");;
+server.use("/rickandmorty", routerRyM);
+
+server.listen(PORT, () => {
+  console.log("Server raised in port: " + PORT);
+});
+
+module.exports = server;
+//********************************************************************************************************* */
+//ESTO ERA CON WEB SERVER
+// var fs = require("fs");
+// var http = require("http");
+// const getCharById = require("./controllers/getCharById");
+
+// const PORT = 3001;
+
+// const server = http.createServer((req,res)=>{
+//     const {url} = req;
+
+//     res.setHeader('Access-Control-Allow-Origin', '*');
+//     console.log(`Server raised in port ${PORT}`);
+//     let charID = url.split("/").pop();
+//     url.includes("/rickandmorty/character") ? getCharById(res,charID) : res.end("Bad Route");
+
+//     }).listen(PORT,"localhost");;
+
+

@@ -7,19 +7,19 @@ const initialState = {
 
 const reducerFav = (state=initialState,action) => {
     switch (action.type){
+        
         case ADD_FAV:
-            return {...state,
-                myFavorites:[...state.allCharacters,action.payload],
-                allCharacters:[...state.allCharacters,action.payload]
-            };
+        return { ...state, 
+            myFavorites: action.payload, 
+            allCharacters: action.payload,
+        };
             
         case REMOVE_FAV:
-            let filterArr = state.myFavorites.filter((personaje)=> (personaje.id !== Number(action.payload)));
-            console.log(filterArr);
-            return {...state,
-                myFavorites:filterArr,
-                allCharacters:filterArr,
-            };
+        return { ...state, 
+            myFavorites: action.payload,
+            allCharacters: action.payload,
+        };
+
         case FILTER:
             if (action.payload === "All") return {...state,myFavorites:state.allCharacters};
             let filterAllChar = state.allCharacters.filter((char) => char.gender === action.payload);
@@ -45,5 +45,17 @@ const reducerFav = (state=initialState,action) => {
                 return {...state};
     }
 }
+// case ADD_FAV:
+        //     return {...state,
+        //         myFavorites:[...state.allCharacters,action.payload],
+        //         allCharacters:[...state.allCharacters,action.payload]
+        //     };
+// case REMOVE_FAV:
+        //     let filterArr = state.myFavorites.filter((personaje)=> (personaje.id !== Number(action.payload)));
+        //     console.log(filterArr);
+        //     return {...state,
+        //         myFavorites:filterArr,
+        //         allCharacters:filterArr,
+        //     };
 
 export default reducerFav;

@@ -5,8 +5,8 @@ import style from "./About.module.css";
 
 export default function About() {
     return (
-        <div class={style.conteinerAbout}>
-            <img src="https://aldescubierto.org/wp-content/uploads/2021/07/Portada_RickyMorty_web.jpg" classname={style.imgAbout} alt="AboutImage"></img>
+        <div className={style.conteinerAbout}>
+            <img src="https://aldescubierto.org/wp-content/uploads/2021/07/Portada_RickyMorty_web.jpg" className={style.imgAbout} alt="AboutImage"></img>
         </div>
     );
  }

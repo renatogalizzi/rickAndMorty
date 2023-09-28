@@ -17,7 +17,7 @@ export default function Detail () {
         axios.get(`http://localhost:3001/rickandmorty/character/${id}`)
         .then(({ data }) => {
            if (data.name) {
-            console.log(data);
+            //console.log(data);
               setCharacter(data);
            } else {
               window.alert('No hay personajes con ese ID');
