@@ -32,35 +32,55 @@ function App() {
     !access && navigate("/");
   }, [access, navigate]);
 
-  // LOGIN HENRY
-//   function login(userData) {
-//     const { email, password } = userData;
-//     const URL = 'http://localhost:3001/rickandmorty/login/';
-//     axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
-//        const { access } = data;
-//        setAccess(data);
-//        access && navigate('/home');
-//     });
-//  }
-//LOGIN MIO
-  const login = (userData) => {
-       //EXPRESS
-    const URL = "http://localhost:3001/rickandmorty/login/";
-    const { email , password } = userData;
-    axios
-      .get(`${URL}?email=${email}&password=${password}`)
-      .then(({ data }) => {
-        if (data.access) {
-          const {access} = data;
-          setAccess(access);
-          navigate("/home");
-        } else {
-          window.alert("Datos Incorrectos");
-        }
-      })
-      .catch((error) => window.alert(error.message));
+  ///////////////////////////////////////////////////// ASYNC AWAIT //////////////////////////////////////////////////////////////////
+  const login = async (userData) => {
+    //EXPRESS
+    try {
+      const URL = "http://localhost:3001/rickandmorty/login/";
+      const { email, password } = userData;
+      const { data } = await axios.get(`${URL}?email=${email}&password=${password}`);
+      if (data.access) {
+        const { access } = data;
+        setAccess(access);
+        navigate("/home");
+      } else {
+        window.alert("Datos Incorrectos");
+      }
+    } catch (error) {
+      window.alert(error.message);
+    }
   };
 
+  /////////////////////////////////////////////////////PROMESAS////////////////////////////////////////////////////////////////////
+  // LOGIN HENRY
+  //   function login(userData) {
+  //     const { email, password } = userData;
+  //     const URL = 'http://localhost:3001/rickandmorty/login/';
+  //     axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
+  //        const { access } = data;
+  //        setAccess(data);
+  //        access && navigate('/home');
+  //     });
+  //  }
+  //LOGIN MIO
+  // const login = (userData) => {
+  //   //EXPRESS
+  //   const URL = "http://localhost:3001/rickandmorty/login/";
+  //   const { email, password } = userData;
+  //   axios
+  //     .get(`${URL}?email=${email}&password=${password}`)
+  //     .then(({ data }) => {
+  //       if (data.access) {
+  //         const { access } = data;
+  //         setAccess(access);
+  //         navigate("/home");
+  //       } else {
+  //         window.alert("Datos Incorrectos");
+  //       }
+  //     })
+  //     .catch((error) => window.alert(error.message));
+  // };
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   const [characters, setCharacters] = React.useState([]);
 
   const validateId = (id) => {
@@ -94,24 +114,41 @@ function App() {
 
   //CON SERVER LOCAL
 
-  function onSearch(id) {
-    axios(`http://localhost:3001/rickandmorty/character/${id}`)
-      .then(({ data }) => {
-        //console.log(data)
-        if (data.name) {
-          if (validateId(id)) {
-            window.alert("El Personaje seleccionado ya Existe xD");
-          } else return setCharacters((oldChars) => [...oldChars, data]);
-          // } else {
-          //    return window.alert('¡No hay personajes con este ID!');
-        }
-      })
-      .catch((error) => {
-        //console.log(error.status)
-        // window.alert(error.request.status +" "+ error.request.response);});;
-        window.alert(error.message);
-      });
+  //                                         ASYNC AWAIT
+  async function onSearch(id) {
+    try {
+      const { data } = await axios(
+        `http://localhost:3001/rickandmorty/character/${id}`
+      );
+      if (data.name) {
+        if (validateId(id)) {
+          window.alert("El Personaje seleccionado ya Existe xD");
+        } else return setCharacters((oldChars) => [...oldChars, data]);
+      }
+    } catch (error) {
+      window.alert(error.message);
+    }
   }
+
+  //                                          PROMESAS
+  // function onSearch(id) {
+  //   axios(`http://localhost:3001/rickandmorty/character/${id}`)
+  //     .then(({ data }) => {
+  //       //console.log(data)
+  //       if (data.name) {
+  //         if (validateId(id)) {
+  //           window.alert("El Personaje seleccionado ya Existe xD");
+  //         } else return setCharacters((oldChars) => [...oldChars, data]);
+  //         // } else {
+  //         //    return window.alert('¡No hay personajes con este ID!');
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       //console.log(error.status)
+  //       // window.alert(error.request.status +" "+ error.request.response);});;
+  //       window.alert(error.message);
+  //     });
+  // }
   //https://axios-http.com/es/docs/handling_errors
 
   const onClose = (id) => {

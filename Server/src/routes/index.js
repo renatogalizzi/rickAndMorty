@@ -6,12 +6,10 @@ const loginServer = require("../controllers/login");
 const routerRyM = express.Router();
 
 routerRyM.get("/character/:id", (req, res) => {
-    //res.header("Access-Control-Allow-Origin", "*");
     getCharById(req, res);
   });
   
   routerRyM.get("/login", (req, res) => {
-    //res.header("Access-Control-Allow-Origin", "*");
     loginServer(req, res);
   });
   
