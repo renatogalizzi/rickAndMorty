@@ -1,25 +1,24 @@
 const express = require("express");
 const getCharById = require("../controllers/getCharById");
-const {postFav, deleteFav} = require("../controllers/handleFavorites");
+const { postFav, deleteFav } = require("../controllers/handleFavorites");
 const loginServer = require("../controllers/login");
 
 const routerRyM = express.Router();
 
 routerRyM.get("/character/:id", (req, res) => {
-    getCharById(req, res);
-  });
-  
-  routerRyM.get("/login", (req, res) => {
-    loginServer(req, res);
-  });
-  
-  routerRyM.post("/fav", (req, res) => {
-    postFav(req, res);
-  });
+  getCharById(req, res);
+});
 
-  routerRyM.delete("/fav/:id", (req, res) => {
-    deleteFav(req,res);
-  });
+routerRyM.get("/login", (req, res) => {
+  loginServer(req, res);
+});
 
+routerRyM.post("/fav", (req, res) => {
+  postFav(req, res);
+});
 
-  module.exports = routerRyM;
+routerRyM.delete("/fav/:id", (req, res) => {
+  deleteFav(req, res);
+});
+
+module.exports = routerRyM;

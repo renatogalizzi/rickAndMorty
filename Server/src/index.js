@@ -1,9 +1,9 @@
+require("dotenv").config();
 const express = require("express");
 const routerRyM = require("./routes/index");
 
 const server = express();
-const PORT = 3001;
-
+const { PORT } = process.env;
 server.use(express.json());
 
 server.use((req, res, next) => {
@@ -16,7 +16,6 @@ server.use((req, res, next) => {
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
   next();
 });
-
 
 server.use("/rickandmorty", routerRyM);
 
@@ -42,5 +41,3 @@ module.exports = server;
 //     url.includes("/rickandmorty/character") ? getCharById(res,charID) : res.end("Bad Route");
 
 //     }).listen(PORT,"localhost");;
-
-

@@ -1,7 +1,8 @@
 const axios = require("axios");
 
-const URL = "https://rickandmortyapi.com/api/character";
+//const URL = "https://rickandmortyapi.com/api/character";
 
+const { URL } = process.env; // ====>DOTENV VARIABLES DE ENTORNO
 //                                 ASYNC AWAIT
 
 const getCharById = async (req, res) => {
