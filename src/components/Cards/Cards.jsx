@@ -19,7 +19,7 @@ export default function Cards(props) {
          {props.characters.map(character => {
          return <Card 
          key={character.id}
-         character={character}
+         //character={character}
          id={character.id} 
          name ={character.name}
          status={character.status}

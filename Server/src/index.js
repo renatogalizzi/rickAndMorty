@@ -1,6 +1,9 @@
 require("dotenv").config();
 const express = require("express");
 const routerRyM = require("./routes/index");
+const { conn } = require('./DB_connection');
+
+
 
 const server = express();
 const { PORT } = process.env;
@@ -19,9 +22,14 @@ server.use((req, res, next) => {
 
 server.use("/rickandmorty", routerRyM);
 
-server.listen(PORT, () => {
-  console.log("Server raised in port: " + PORT);
+conn.sync({alter:true}).then(()=>{
+  server.listen(PORT, () => {
+      console.log("Server raised in port: " + PORT);
+    });
 });
+// server.listen(PORT, () => {
+//   console.log("Server raised in port: " + PORT);
+// });
 
 module.exports = server;
 //********************************************************************************************************* */

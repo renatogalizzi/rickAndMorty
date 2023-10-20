@@ -22,6 +22,7 @@ position:relative;
 `
 
 export function Card(props) {
+   //console.log(props);
    const location = useLocation();
    const myFavorites = useSelector((state)=>state.myFavorites);
    const dispatch = useDispatch();
